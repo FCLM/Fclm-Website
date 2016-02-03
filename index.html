@@ -276,8 +276,8 @@
                 <div class="col-md-4 wow fadeIn" data-wow-delay=".4s">
                     <div class="media">
                         <div id="br100s" class="media-body">
-                            <h3 class="media-heading">Battle Rank 100s</h3>
-                            <p style="font-size: 15px">Total BR100s: <span id="number_hundy"></span></p>
+                            <h3 class="media-heading">Battle Rank 100+'s</h3>
+                            <p style="font-size: 15px">Total BR100+'s: <span id="number_hundy"></span></p>
                             <ul></ul>
                         </div>
                     </div>
@@ -551,19 +551,52 @@
             url: 'http://census.psarchives.com/outfit?id=37512545478648131'
         }).done(function (data) {
             $('#number_online').html(data.query.online);
+            var hundies = [];
             data.members.forEach(function(member) {
                 if (member.status == 'Online') {
-                    $("#online ul").append('<li>' + member.name + ' (' + member.rank + ')</li>')
+                    $("#online ul").append('<li>' + member.rank + ' - ' + member.name + '</li>');
+                }
+                if (member.rank.length == 3) {
+                    hundies.push('<li>' + member.rank + ' - ' + member.name + '</li>');
                 }
             });
-            $('#number_hundy').html(data.query.br100s.length);
-            data.query.br100s.forEach(function(hundys) {
-                $("#br100s ul").append('<li>' + hundys + '</li>')
-
+            hundies.forEach(function (element) {
+                $("#br100s ul").append(element);
             });
+            $('#number_hundy').html(hundies.length);
             $('#member_count').html(data.query.size);
         });
+        /*$.ajax({
+            dataType: "jsonp",
+            url: 'http://census.psarchives.com/outfit?id=37512545478648131'
+        }).done(function (data) {
+            $('#number_online').html(data.query.online);
+            var num = 0;
+            data.members.forEach(function(member) {
+                if (member.status == 'Online') {
+                    $("#online ul").append('<li>' + member.name + ' (' + member.rank + ')</li>');
+                }
+                if (member.rank.length == 3) {
+                    num++;
+                    $("#br100s ul").append('<li>' + member.name + ' (' + member.rank + ')</li>');
+                }
+            });
+            $('#number_hundy').html(num);
+            $('#member_count').html(data.query.size);
+        });*/
     </script>
+
+
+<!--    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-66651130-4', 'auto');
+        ga('send', 'pageview');
+
+    </script>-->
 
 </body>
 
