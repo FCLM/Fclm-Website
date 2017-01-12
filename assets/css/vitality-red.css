@@ -519,7 +519,7 @@ aside.cta-quote span.quote {
 }
 .services .media .media-body ul {
   list-style: inside;
-  padding: 0;
+  padding: 1em;
 }
 .services .media .media-body ul li {
   margin-bottom: 10px;
@@ -1089,4 +1089,7 @@ body.vintage .testimonials .testimonials-carousel .item .testimonial-info .testi
 body.vintage .testimonials .testimonials-carousel .owl-controls .owl-prev,
 body.vintage .testimonials .testimonials-carousel .owl-controls .owl-next {
   line-height: 55px;
+}
+li{
+	list-style-position: outside;
 }
